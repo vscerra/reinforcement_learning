@@ -6,11 +6,13 @@ Created on Fri Feb 14 14:10:23 2025
 """
 import matplotlib.pyplot as plt
 
-def plot_results(rewards, label):
+def plot_results(results_dict, title = "Performance Comparison", ylabel = "Average Reward"):
     """Plots the reward curves for different algorithms."""
-    plt.plot(rewards, label=label)
+    plt.figure(figsize = (10, 6))
+    for label, rewards in results_dict.items():
+        plt.plot(rewards, label = label)
     plt.xlabel("Steps")
-    plt.ylabel("Average Reward")
+    plt.ylabel(ylabel)
     plt.legend()
-    plt.title("Performance Comparison")
+    plt.title(title)
     plt.show()

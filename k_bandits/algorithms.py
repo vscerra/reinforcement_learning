@@ -89,9 +89,10 @@ class UCB:
     def select_action(self):
         ''' selects an action using UCB formula '''
         self.t += 1
-        if 0 in self.N:
-            return np.argmin(self.N) # ensure each action is tried at least once
-        ucb_values = self.Q + self.c * np.sqrt(np.log(self.t) / self.N)
+        if  self.t <= self.k: # ensure each action is tried at least once
+            return self.t - 1
+          
+        ucb_values = self.Q + self.c * np.sqrt(np.log(self.t) / (self.N + 1e-5)) # prevent dividing by zero
         return np.argmax(ucb_values)
       
     def update(self, action, reward):
