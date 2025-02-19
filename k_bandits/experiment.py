@@ -5,7 +5,7 @@ Created on Fri Feb 14 14:08:12 2025
 @author: vscerra
 """
 import numpy as np
-from bandit import Bandit
+from k_bandits.bandit import Bandit
 
 def run_experiment(algorithm, k=10, steps=1000, runs=2000):
     """Runs multiple trials of a bandit algorithm and returns average rewards."""
