@@ -100,3 +100,22 @@ class UCB:
         self.N[action] += 1
         self.Q[action] += (reward - self.Q[action]) / self.N[action]
         
+
+class ThompsonSampling:
+    """ Thompson Sampling for multi-armed bandits (Binary Rewards - Beta distribution) """
+    def __init__(self, k = 10, alpha = 1, beta = 1):
+        self.k = k
+        self.alpha = np.ones(k) * alpha # success count
+        self.beta = np.ones(k) * beta # failures count
+        
+    def select_action(self):
+        """select an action by sampling from the beta distribution"""
+        samples = np.random.beta(self.alpha, self.beta)
+        return np.argmax(samples)
+      
+    def update(self, action, reward):
+        """ update beta distribution parameters based on recieved reward"""
+        self.alpha[action] = max(1, self.alpha[action] + reward)  # Keep α >= 1
+        self.beta[action] = max(1, self.beta[action] + (1 - reward))  # Keep β >= 1
+        
+        
