@@ -3,7 +3,7 @@ import numpy as np
 class Gridworld:
     def __init__(self, size=4, start=0, goal=15, traps=None, gamma=0.9):
         self.size = size
-        self.n_state = size * size
+        self.n_states = size * size
         self.start = start
         self.goal = goal
         self.traps = traps if traps else []
@@ -55,3 +55,4 @@ class Gridworld:
 
         self.state = next_state
         return next_state, reward, done
+    
